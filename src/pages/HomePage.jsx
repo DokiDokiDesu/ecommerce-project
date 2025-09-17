@@ -1,17 +1,30 @@
 import { Header } from "../components/Header";
 import "./HomePage.css";
-import { products } from "../../starting-code/data/products";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 export function HomePage() {
-  axios.get("http://localhost:3000/api/products").then((response) => {
-    console.log(response.data);
-  });
+  const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+
+  //useState ile backend'den alınan veri kullanılır.
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/products").then((response) => {
+      setProducts(response.data);
+    });
+
+    axios.get("http://localhost:3000/api/cart-items").then((response) => {
+      setCart(response);
+    });
+  }, []); //dependency array boş bırakıldığı için sadece 1 kere çalışır.
+
+  //useEffect kullanılarak backend'den veri çekme   işleminin her renderda tekrarlanması önlenir.
 
   return (
     <>
       <title>Ecommerce Project</title>
-      <Header />
+      <Header cart={cart} />
       <div className="home-page">
         <div className="products-grid">
           {products.map((product) => {
