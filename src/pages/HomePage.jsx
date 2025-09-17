@@ -15,7 +15,7 @@ export function HomePage() {
     });
 
     axios.get("http://localhost:3000/api/cart-items").then((response) => {
-      setCart(response);
+      setCart(response.data);
     });
   }, []); //dependency array boş bırakıldığı için sadece 1 kere çalışır.
 
