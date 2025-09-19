@@ -3,19 +3,14 @@ import "./HomePage.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export function HomePage() {
+export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
 
   //useState ile backend'den alınan veri kullanılır.
 
   useEffect(() => {
     axios.get("/api/products").then((response) => {
       setProducts(response.data);
-    });
-
-    axios.get("/api/cart-items").then((response) => {
-      setCart(response.data);
     });
   }, []); //dependency array boş bırakıldığı için sadece 1 kere çalışır.
 
