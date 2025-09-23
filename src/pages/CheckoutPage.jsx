@@ -1,8 +1,18 @@
 import "./checkout-header.css";
 import "./CheckoutPage.css";
 import { formatMoney } from "../utils/money";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export function CheckoutPage({ cart }) {
+  const [deliveryOptions, setDeliveryOptons] = useState([]);
+
+  useEffect(() => {
+    axios.get("/api/delivery-options").then((response) => {
+      setDeliveryOptons(response.data);
+    });
+  }, []);
+
   return (
     <>
       <title>Checkout page</title>
