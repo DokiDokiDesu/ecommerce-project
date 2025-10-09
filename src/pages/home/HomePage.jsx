@@ -10,12 +10,12 @@ export function HomePage({ cart }) {
   //useState ile backend'den alınan veri kullanılır.
 
   useEffect(() => {
-    axios.get("/api/products").then((response) => {
+    const getHomeData = async () => {
+      const response = await axios.get("/api/products");
       setProducts(response.data);
-    });
-  }, []); //dependency array boş bırakıldığı için sadece 1 kere çalışır.
-
-  //useEffect kullanılarak backend'den veri çekme   işleminin her renderda tekrarlanması önlenir.
+    };
+    getHomeData();
+  }, []);
 
   return (
     <>
