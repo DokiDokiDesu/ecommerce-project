@@ -1,7 +1,7 @@
 import "./App.css";
-import { HomePage } from "./pages/HomePage";
+import { HomePage } from "./pages/home/HomePage";
 import { Routes, Route } from "react-router";
-import { CheckoutPage } from "./pages/CheckoutPage";
+import { CheckoutPage } from "./pages/Checkout/CheckoutPage";
 import { Orders } from "./pages/Orders";
 import { Tracking } from "./pages/Tracking";
 import { useEffect, useState } from "react";
